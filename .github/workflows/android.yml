@@ -25,6 +25,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew :Boardwalk2:assembleDebug
+    - name: test
+      run: find Boardwalk2/
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
