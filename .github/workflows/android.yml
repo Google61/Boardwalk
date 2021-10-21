@@ -24,9 +24,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :Boardwalk2:assembleDebug
+      run: ./gradlew :BoardwalkJVM:assembleDebug
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: Boardwalk2-debug
-        path: Boardwalk2/build/outputs/apk/debug/Boardwalk2-debug.apk
+        name: BoardwalkJVM-debug
+        path: BoardwalkJVM/build/outputs/apk/debug/BoardwalkJVM-debug.apk
