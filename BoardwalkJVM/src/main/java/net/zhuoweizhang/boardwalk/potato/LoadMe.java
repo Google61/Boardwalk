@@ -26,20 +26,19 @@ public class LoadMe {
 	public static void exec(String mcClassPath, String[] backArgs) {
 		try {
 			setenv("LD_LIBRARY_PATH", 
-				runtimePath + "/newglibc/lib:" +
-				runtimePath);
+				runtimePath + "/lib/aarch32:" +
+				runtimePath + "/lib/aarch32/jli:" + runtimePath);
 			//setenv("LD_DEBUG", "all");
-			setenv("LD_PRELOAD", runtimePath + "/libboardwalk_preload.so");
-			setenv("OVERRIDE_PROC_SELF_EXE", runtimePath + "/jvm/jdk1.8.0_33/jre/bin/java");
+			//setenv("LD_PRELOAD", runtimePath + "/libboardwalk_preload.so");
+			setenv("OVERRIDE_PROC_SELF_EXE", runtimePath + "/bin/java");
 
 			setenv("LIBGL_MIPMAP", "3");
 			setenv("HOME", "/sdcard/boardwalk");
 
 			setupBridge();
 			byte[] auxv = readAuxV();
-			String[] frontArgs = {runtimePath + "/newglibc/lib/ld-linux-armhf.so.3",
-				runtimePath + "/jvm/jdk1.8.0_33/jre/bin/java",
-				"-server", "-Xms450M", "-Xmx450M",
+			String[] frontArgs = {runtimePath + "/bin/java",
+				"-Xms450M", "-Xmx450M",
 				"-cp", mcClassPath,
 				"-Djava.library.path=" + runtimePath};
 			String[] fullArgs = new String[frontArgs.length + backArgs.length];
