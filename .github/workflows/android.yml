@@ -2,9 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ Boardwalk ]
   pull_request:
-    branches: [ Boardwalk ]
   workflow_dispatch:
 
 jobs:
