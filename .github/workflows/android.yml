@@ -18,7 +18,18 @@ jobs:
         java-version: '8'
         distribution: 'adopt'
         cache: gradle
-
+    - name: Get JRE
+      uses: dawidd6/action-download-artifact@v2
+      with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: build.yml
+          path: .
+          workflow_conclusion: success
+          repo: Google61/android-openjdk-build-multiarch
+          branch: buildjre8
+          name: jre8-aarch32
+    - name: Move JRE
+      run: mv jre8-arm-*-release.tar.xz BoardwalkJVM/src/main/assets/jre.tar.xz
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
